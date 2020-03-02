@@ -4,15 +4,17 @@ import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+/** Class which calls different methods and extends YahtzeeContent
+ * for easy access to labels and buttons
+ * @author Holt, Mary */
 public class YahtzeeFrame extends YahtzeeContent implements ActionListener
 {
 	/** Frame named f used for adding and deleting components for display.
 	 */
 	public static JFrame f = new JFrame();
 	
-	/** Stores number of turns completed */
-	static byte turnCounter = 0;
-	
+	/** Used to call constructors and begin menu Seqeuence
+	 * @param args Unused */
 	public static void main(String[] args)
 	{	
 		new YahtzeeContent();
@@ -20,9 +22,8 @@ public class YahtzeeFrame extends YahtzeeContent implements ActionListener
 		new YahtzeeFrame();
 	}
 	
-	/** Method that creates the frame and sets the size, used when needed to
-	 * reload/create the frame.
-	 */
+	/** Creates the frame and sets the size, used when needed to
+	 * reload/create the frame. */
 	public static void Frame()
 	{
 		f = new JFrame("Yahtzee");
@@ -34,6 +35,7 @@ public class YahtzeeFrame extends YahtzeeContent implements ActionListener
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
 	}
 	
+	/** Creates the frame and adds number of player buttons */
 	YahtzeeFrame()
 	{
 		Frame();
@@ -44,6 +46,8 @@ public class YahtzeeFrame extends YahtzeeContent implements ActionListener
 		f.add(menuBackground);
 	}
 	
+	/** Adds everthing for turn one: score/roll buttons,
+	 * calls dice display method, and adds labels */
 	public static void turnOne()
 	{	
 		YahtzeeDice.rollAllDie();
@@ -67,6 +71,8 @@ public class YahtzeeFrame extends YahtzeeContent implements ActionListener
 		f.add(tableBackground);
 	}
 	
+	/** Adds everthing for turn two: score/roll buttons,
+	 * calls dice display method, and adds labels */
 	public static void turnTwo()
 	{
 		YahtzeeDice.displayDice();
@@ -81,17 +87,9 @@ public class YahtzeeFrame extends YahtzeeContent implements ActionListener
 		f.add(tableBackground);
 	}
 	
-	/*public static void turnThree()
-	{
-		YahtzeeDice.displayDice();
-		
-		scoreButton.setBounds(300, 500, 300, 100);
-		f.add(playerText);
-		f.add(playerLabel);
-		f.add(scoreButton);
-		f.add(tableBackground);
-	} */
-	
+	/** Adds score menu and current values for currentPlayer
+	 * data, displays current die rolls, and displays available
+	 * scoring boxes*/
 	public static void scoreCard()
 	{
 		YahtzeeDice.displayScoreDie();
@@ -119,41 +117,44 @@ public class YahtzeeFrame extends YahtzeeContent implements ActionListener
 		f.add(tableBackground);
 	}
 	
+	/** Displays final scores for each player on the screen */
 	public static void finalScore()
 	{
 		//TODO: DO FINAL SCORES DISPLAY MECH.
 		switch(YahtzeeData.numOfPlayers)
 		{
-			case 4:
-				int p4Score = YahtzeeData.players.get(3).calculateScore();
-				JLabel p4Label = new JLabel("Player 4 Score is: " + p4Score);
-				p4Label.setFont(p4Label.getFont().deriveFont(32.0f));
-				p4Label.setBounds(300, 350, 500, 100);
-				f.add(p4Label);
-			case 3:
-				int p3Score = YahtzeeData.players.get(2).calculateScore();
-				JLabel p3Label = new JLabel("Player 3 Score is: " + p3Score);
-				p3Label.setFont(p3Label.getFont().deriveFont(32.0f));
-				p3Label.setBounds(300, 250, 500, 100);
-				f.add(p3Label);
-			case 2:
-				int p2Score = YahtzeeData.players.get(1).calculateScore();
-				JLabel p2Label = new JLabel("Player 2 Score is: " + p2Score);
-				p2Label.setFont(p2Label.getFont().deriveFont(32.0f));
-				p2Label.setBounds(300, 150, 500, 100);
-				f.add(p2Label);
-			case 1:
-				int p1Score = YahtzeeData.players.get(0).calculateScore();
-				JLabel p1Label = new JLabel("Player 1 Score is: " + p1Score);
-				p1Label.setFont(p1Label.getFont().deriveFont(32.0f));
-				p1Label.setBounds(300, 50, 500, 100);
-				f.add(p1Label);
+		case 4:
+			int p4Score = YahtzeeData.players.get(3).calculateScore();
+			JLabel p4Label = new JLabel("Player 4 Score is: " + p4Score);
+			p4Label.setFont(p4Label.getFont().deriveFont(32.0f));
+			p4Label.setBounds(300, 350, 500, 100);
+			f.add(p4Label);
+		case 3:
+			int p3Score = YahtzeeData.players.get(2).calculateScore();
+			JLabel p3Label = new JLabel("Player 3 Score is: " + p3Score);
+			p3Label.setFont(p3Label.getFont().deriveFont(32.0f));
+			p3Label.setBounds(300, 250, 500, 100);
+			f.add(p3Label);
+		case 2:
+			int p2Score = YahtzeeData.players.get(1).calculateScore();
+			JLabel p2Label = new JLabel("Player 2 Score is: " + p2Score);
+			p2Label.setFont(p2Label.getFont().deriveFont(32.0f));
+			p2Label.setBounds(300, 150, 500, 100);
+			f.add(p2Label);
+		case 1:
+			int p1Score = YahtzeeData.players.get(0).calculateScore();
+			JLabel p1Label = new JLabel("Player 1 Score is: " + p1Score);
+			p1Label.setFont(p1Label.getFont().deriveFont(32.0f));
+			p1Label.setBounds(300, 50, 500, 100);
+			f.add(p1Label);
 		}
 	
 		f.add(tableBackground);
 	}
 
 	@Override
+	/** Used to call other methods depending on action value 
+	 * @param action Used to determine which button was pressed */
 	public void actionPerformed(ActionEvent action) 
 	{
 		String command = action.getActionCommand();
@@ -390,16 +391,5 @@ public class YahtzeeFrame extends YahtzeeContent implements ActionListener
 			YahtzeeData.setTurnCounter();
 		}
 	}
-	
-	@Override
-	public void keyPressed(KeyEvent e)
-	{
-		int key = e.getKeyCode();
-		if(key == KeyEvent.VK_ESCAPE)
-		{
-			System.exit(1);
-		}
-	}
-	
 	
 }

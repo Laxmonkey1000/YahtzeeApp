@@ -1,8 +1,10 @@
 import java.util.ArrayList;
-
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
+/** Holds values for players array data and checks certain boxes
+ * score values using dice array and confirms user actions for scoring
+ * @author Holt, Mary */
 public class YahtzeeData 
 {
 	/** Stores the number of players 1-4 */
@@ -27,23 +29,38 @@ public class YahtzeeData
 	public int[] upperScores = new int[6];
 	
 	public boolean
+	/** True: threeOfKind is scored, False: threeOfKind is not scored */
 	threeOfKindScored,
+	/** True: fourOfKind is scored, False: fourOfKind is not scored */
 	fourOfKindScored,
+	/** True: fullHouse is scored, False: fullHouse is not scored */
 	fullHouseScored,
+	/** True: smallStraight is scored, False: smallStraight is not scored */
 	smallStraightScored,
+	/** True: largeStraight is scored, False: largeStraight is not scored */
 	largeStraightScored,
+	/** True: chance is scored, False: chance is not scored */
 	chanceScored,
+	/** True: yahtzee is scored, False: yahtzee is not scored */
 	yahtzeeScored;
 	
 	public int
+	/** Holds value for a players threeOfKind box value*/
 	threeOfKind,
+	/** Holds value for a players fourOfKind box value*/
 	fourOfKind,
+	/** Holds value for a players fullHouse box value*/
 	fullHouse,
+	/** Holds value for a players smallStraight box value*/
 	smallStraight,
+	/** Holds value for a players largeStraight box value*/
 	largeStraight,
+	/** Holds value for a players chance box value*/
 	chance,
+	/** Holds value for a players yahtzee box value*/
 	yahtzee;
 	
+	/** Displays available boxes available for player on score screen */
 	public static void displayScoreBox()
 	{
 		int length = players.get(currentPlayer).upperScored.length;
@@ -54,18 +71,18 @@ public class YahtzeeData
 			{
 				switch(x)
 				{
-					case 0:
-						YahtzeeFrame.f.add(YahtzeeFrame.oneBox); break;
-					case 1:
-						YahtzeeFrame.f.add(YahtzeeFrame.twoBox); break;
-					case 2:
-						YahtzeeFrame.f.add(YahtzeeFrame.threeBox); break;
-					case 3:
-						YahtzeeFrame.f.add(YahtzeeFrame.fourBox); break;
-					case 4:
-						YahtzeeFrame.f.add(YahtzeeFrame.fiveBox); break;
-					case 5:
-						YahtzeeFrame.f.add(YahtzeeFrame.sixBox); break;
+				case 0:
+					YahtzeeFrame.f.add(YahtzeeFrame.oneBox); break;
+				case 1:
+					YahtzeeFrame.f.add(YahtzeeFrame.twoBox); break;
+				case 2:
+					YahtzeeFrame.f.add(YahtzeeFrame.threeBox); break;
+				case 3:
+					YahtzeeFrame.f.add(YahtzeeFrame.fourBox); break;
+				case 4:
+					YahtzeeFrame.f.add(YahtzeeFrame.fiveBox); break;
+				case 5:
+					YahtzeeFrame.f.add(YahtzeeFrame.sixBox); break;
 				}
 			}
 		}
@@ -85,6 +102,10 @@ public class YahtzeeData
 		{ YahtzeeFrame.f.add(YahtzeeFrame.yahtzee); }
 	}
 	
+	/** Method that searches for 1-6 in the die and adds the
+	 * score of all the die that match the number entered
+	 * @param index Die number that is being searched for
+	 * @return tempScore Score based on index input */
 	public static int checkScoreUpper(int index)
 	{
 		int tempScore = 0;
@@ -101,6 +122,11 @@ public class YahtzeeData
 		return tempScore;
 	}
 	
+	/** Checks if there is a 3 or 4 of a kind and returns
+	 * value of score that will be scored in the box
+	 * @param num 3: Three of Kind 4: Four of Kind
+	 * @return score Adds up total of all dice or is 0
+	 */
 	public static byte checkNumOfKind(int num)
 	{
 		byte sameCounter = 0;
@@ -116,7 +142,7 @@ public class YahtzeeData
 					sameCounter++;
 				}
 			}
-			if(sameCounter == num) 
+			if(sameCounter >= num) 
 			{
 				for(int i = 0; i < length; i++)
 				{
@@ -131,6 +157,10 @@ public class YahtzeeData
 		return 0;
 	}
 	
+	/** Checks if there is a fullHouse and returns score
+	 * for fullHouse box based on dice[] array
+	 * @return 25: FullHouse present 0: no FullHouse
+	 */
 	public static int checkFullHouse()
 	{
 		byte
@@ -188,6 +218,11 @@ public class YahtzeeData
 		return 0;
 	}
 	
+	/** Checks if there is a 4 or 5 die straight and returns
+	 * appropriate score based on dice[] array
+	 * @param num 4: smallStraight, 5: largeStraight
+	 * @return 30: smallStraight 40: largeStraight 0: none
+	 */
 	public static int checkStraight(int num)
 	{
 		YahtzeeDice.sortDice();
@@ -224,6 +259,8 @@ public class YahtzeeData
 		return 0;
 	}
 	
+	/** Adds value of all dice and returns it for chance box 
+	 * @return score Value of all die*/
 	public static int checkChance()
 	{
 		int length = YahtzeeDice.dice.length;
@@ -236,6 +273,10 @@ public class YahtzeeData
 		return score;
 	}
 	
+	/** Checks if all dice are same number and returns value
+	 * for yahtzee box based on dice[] array
+	 * @return 50: Yahtzee 0: No Yahtzee
+	 */
 	public static int checkYahtzee()
 	{
 		int length = YahtzeeDice.dice.length;
@@ -264,10 +305,15 @@ public class YahtzeeData
 		return 0;
 	}
 	
+	/** Displays pop-up message prompting user to confirm calculated
+	 * score for selected box
+	 * @param score Used to display calculated score for the box
+	 * @param name Used to display their selected box name
+	 * @return true: Save + swtich Players false: Don't save, remain on screen */
 	public static boolean confirmBox(int score, String name)
 	{
-		int result = JOptionPane.showConfirmDialog(null, "Save " + score + " in box " + name + "?", 
-				"Confirm Box Selection", JOptionPane.YES_NO_OPTION);
+		int result = JOptionPane.showConfirmDialog(null, "Save " + score + " in box " 
+				+ name + "?",  "Confirm Box Selection", JOptionPane.YES_NO_OPTION);
 		if(result == JOptionPane.YES_OPTION)
 		{
 			return true;
@@ -275,9 +321,11 @@ public class YahtzeeData
 		return false;
 	}
 	
+	/** Displays current scores for each box for currentPlayer */
 	public static void displayScores()
 	{
 		//TODO: MAKE DIFFERENT COLORS FOR SCORED VS UNSCORED
+		//TODO: Condense....
 		
 		JLabel one = new JLabel(Integer.toString(players.get(currentPlayer).upperScores[0]));
 		one.setBounds(285, -5, 50, 50);
@@ -342,6 +390,8 @@ public class YahtzeeData
 		YahtzeeFrame.f.add(totalLow);
 	}
 	
+	/** Gets upper section score for certain player
+	 * @return tempScore Cummulative score of upperSection values */
 	public int getUpScore()
 	{
 		int tempScore = 0;
@@ -358,6 +408,8 @@ public class YahtzeeData
 		return tempScore;
 	}
 	
+	/** Gets lower section score for certain player
+	 * @return tempScore Cummulative score of lowerSection values */
 	public int getLowScore()
 	{
 		int tempScore = 0;
@@ -371,8 +423,11 @@ public class YahtzeeData
 		return tempScore;
 	}
 	
+	/** Gets score of upper and lower sections
+	 * @return tempScore Cummulative score of all values */
 	public int calculateScore()
 	{
+		//TODO: Utilize other two methods to condense
 		int tempScore = 0;
 		tempScore += upperScores[0];
 		tempScore += upperScores[1];
@@ -395,6 +450,8 @@ public class YahtzeeData
 		return tempScore;
 	}
 	
+	/** Sets turn counter to keep track of rolls and
+	 * calls finalScore screen when cycleCounter = 13*/
 	public static void setTurnCounter()
 	{
 		if(cycleCounter > 12)
@@ -422,6 +479,8 @@ public class YahtzeeData
 		}
 	}
 	
+	/** Sets number of players and adds them to the players array
+	 * @param num Number of players selected from menuScreen */
 	public static void setPlayers(int num)
 	{ 
 		numOfPlayers = num; 
@@ -431,6 +490,8 @@ public class YahtzeeData
 		}
 	}
 	
+	/** Switched players and updates cycle counter after last players
+	 * turn in order to keep track of when all boxes are scored*/
 	public static void switchPlayers()
 	{
 		switch(currentPlayer)
