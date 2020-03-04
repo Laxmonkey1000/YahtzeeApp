@@ -13,11 +13,11 @@ public class YahtzeeDice
 	public static JLabel[] dicePics = new JLabel[5];
 	
 	/** Holds values for 5 dice */
-	public static byte[] dice = new byte[5];
+	public static int[] dice = new int[5];
 	/** Random Number generator named random */
 	public static Random random = new Random();
 	/** Holds value of number of sides of the dice */
-	public static byte sidesNum = 6;
+	public static int sidesNum = 6;
 	
 	/** Constructor Unused */
 	YahtzeeDice()
@@ -31,7 +31,7 @@ public class YahtzeeDice
 		{
 			int genNum = random.nextInt(sidesNum);
 			genNum += 1;
-			setDice(x, genNum);
+			dice[x] = genNum;
 		}
 		
 	}
@@ -42,15 +42,7 @@ public class YahtzeeDice
 	{
 		int genNum = random.nextInt(sidesNum);
 		genNum += 1;
-		setDice(index, genNum);
-	}
-	
-	/** Sets value of a single dice based on paramaters
-	 * @param x Used to determine die in array to use
-	 * @param genNum Use to determine what new value is */
-	public static void setDice(int x, int genNum)
-	{
-		dice[x] = (byte) genNum;
+		dice[index] = genNum;
 	}
 	
 	/** Displays all dice on the Rolling/Turn screen */
@@ -123,12 +115,6 @@ public class YahtzeeDice
 			
 		}
 		
-	}
-
-	/** Sorts dice into sequential order */
-	public static void sortDice()
-	{
-		Arrays.sort(dice);	
 	}
 	
 }

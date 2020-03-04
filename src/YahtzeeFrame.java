@@ -1,6 +1,8 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
@@ -35,7 +37,7 @@ public class YahtzeeFrame extends YahtzeeContent implements ActionListener
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
 	}
 	
-	/** Creates the frame and adds number of player buttons */
+	/** Creates the frame and adds 4 player buttons */
 	YahtzeeFrame()
 	{
 		Frame();
@@ -160,236 +162,235 @@ public class YahtzeeFrame extends YahtzeeContent implements ActionListener
 		String command = action.getActionCommand();
 		//TODO: Condense into a function?
 		
-		if(command == "oneBox")
+		switch(command)
 		{
-			int score = YahtzeeData.checkScoreUpper(1);
-			boolean confirm = YahtzeeData.confirmBox(score, "ONES");
-			if(confirm == true) 
-			{ 
-				YahtzeeData.players.get(YahtzeeData.currentPlayer).upperScored[0] = true;
-				YahtzeeData.players.get(YahtzeeData.currentPlayer).upperScores[0] = score;
-				f.getContentPane().removeAll();
-				f.repaint();
-				YahtzeeData.switchPlayers();
-				YahtzeeData.setTurnCounter();
-			}	
-		}
-		else if(command == "twoBox")
-		{
-			int score = YahtzeeData.checkScoreUpper(2);
-			boolean confirm = YahtzeeData.confirmBox(score, "TWOS");
-			if(confirm)
-			{
-				YahtzeeData.players.get(YahtzeeData.currentPlayer).upperScored[1] = true;
-				YahtzeeData.players.get(YahtzeeData.currentPlayer).upperScores[1] = score;
-				f.getContentPane().removeAll();
-				f.repaint();
-				YahtzeeData.switchPlayers();
-				YahtzeeData.setTurnCounter();
-			}
-		}
-		else if(command == "threeBox")
-		{
-			int score = YahtzeeData.checkScoreUpper(3);
-			boolean confirm = YahtzeeData.confirmBox(score, "THREES");
-			if(confirm)
-			{
-				YahtzeeData.players.get(YahtzeeData.currentPlayer).upperScored[2] = true;
-				YahtzeeData.players.get(YahtzeeData.currentPlayer).upperScores[2] = score;
-				f.getContentPane().removeAll();
-				f.repaint();
-				YahtzeeData.switchPlayers();
-				YahtzeeData.setTurnCounter();
-			}
-		}
-		else if(command == "fourBox")
-		{
-			int score = YahtzeeData.checkScoreUpper(4);
-			boolean confirm = YahtzeeData.confirmBox(score, "FOURS");
-			if(confirm)
-			{
-				YahtzeeData.players.get(YahtzeeData.currentPlayer).upperScored[3] = true;
-				YahtzeeData.players.get(YahtzeeData.currentPlayer).upperScores[3] = score;
-				f.getContentPane().removeAll();
-				f.repaint();
-				YahtzeeData.switchPlayers();
-				YahtzeeData.setTurnCounter();
-			}
-		}
-		else if(command == "fiveBox")
-		{
-			int score = YahtzeeData.checkScoreUpper(5);
-			boolean confirm = YahtzeeData.confirmBox(score, "FIVES");
-			if(confirm)
-			{
-				YahtzeeData.players.get(YahtzeeData.currentPlayer).upperScored[4] = true;
-				YahtzeeData.players.get(YahtzeeData.currentPlayer).upperScores[4] = score;
-				f.getContentPane().removeAll();
-				f.repaint();
-				YahtzeeData.switchPlayers();
-				YahtzeeData.setTurnCounter();
-			}
-		}
-		else if(command == "sixBox")
-		{
-			int score = YahtzeeData.checkScoreUpper(6);
-			boolean confirm = YahtzeeData.confirmBox(score, "SIXES");
-			if(confirm)
-			{
-				YahtzeeData.players.get(YahtzeeData.currentPlayer).upperScored[5] = true;
-				YahtzeeData.players.get(YahtzeeData.currentPlayer).upperScores[5] = score;
-				f.getContentPane().removeAll();
-				f.repaint();
-				YahtzeeData.switchPlayers();
-				YahtzeeData.setTurnCounter();
-			}
-		}
-		else if(command == "threeOfKind")
-		{
-			int score = YahtzeeData.checkNumOfKind(3);
-			boolean confirm = YahtzeeData.confirmBox(score, "3 of a Kind");
-			if(confirm)
-			{
-				YahtzeeData.players.get(YahtzeeData.currentPlayer).threeOfKindScored = true;
-				YahtzeeData.players.get(YahtzeeData.currentPlayer).threeOfKind = score;
-				f.getContentPane().removeAll();
-				f.repaint();
-				YahtzeeData.switchPlayers();
-				YahtzeeData.setTurnCounter();
-			}
-		}
-		else if(command == "fourOfKind")
-		{
-			int score = YahtzeeData.checkNumOfKind(4);
-			boolean confirm = YahtzeeData.confirmBox(score, "4 of a Kind");
-			if(confirm)
-			{
-				YahtzeeData.players.get(YahtzeeData.currentPlayer).fourOfKindScored = true;
-				YahtzeeData.players.get(YahtzeeData.currentPlayer).fourOfKind = score;
-				f.getContentPane().removeAll();
-				f.repaint();
-				YahtzeeData.switchPlayers();
-				YahtzeeData.setTurnCounter();
-			}
-		}
-		else if(command == "fullHouse")
-		{
-			int score = YahtzeeData.checkFullHouse();
-			boolean confirm = YahtzeeData.confirmBox(score, "Full House");
-			if(confirm)
-			{
-				YahtzeeData.players.get(YahtzeeData.currentPlayer).fullHouseScored = true;
-				YahtzeeData.players.get(YahtzeeData.currentPlayer).fullHouse = score;
-				f.getContentPane().removeAll();
-				f.repaint();
-				YahtzeeData.switchPlayers();
-				YahtzeeData.setTurnCounter();
-			}
-		}
-		else if(command == "smallStraight")
-		{
-			int score = YahtzeeData.checkStraight(4);
-			boolean confirm = YahtzeeData.confirmBox(score, "Small Straight");
-			if(confirm)
-			{
-				YahtzeeData.players.get(YahtzeeData.currentPlayer).smallStraightScored = true;
-				YahtzeeData.players.get(YahtzeeData.currentPlayer).smallStraight = score;
-				f.getContentPane().removeAll();
-				f.repaint();
-				YahtzeeData.switchPlayers();
-				YahtzeeData.setTurnCounter();
-			}
-		}
-		else if(command == "largeStraight")
-		{
-			int score = YahtzeeData.checkStraight(5);
-			boolean confirm = YahtzeeData.confirmBox(score,  "Large Straight");
-			if(confirm)
-			{
-				YahtzeeData.players.get(YahtzeeData.currentPlayer).largeStraightScored = true;
-				YahtzeeData.players.get(YahtzeeData.currentPlayer).largeStraight = score;
-				f.getContentPane().removeAll();
-				f.repaint();
-				YahtzeeData.switchPlayers();
-				YahtzeeData.setTurnCounter();
-			}
-		}
-		else if(command == "chance")
-		{
-			int score = YahtzeeData.checkChance();
-			boolean confirm = YahtzeeData.confirmBox(score, "Chance");
-			if(confirm)
-			{
-				YahtzeeData.players.get(YahtzeeData.currentPlayer).chanceScored = true;
-				YahtzeeData.players.get(YahtzeeData.currentPlayer).chance = score;
-				f.getContentPane().removeAll();
-				f.repaint();
-				YahtzeeData.switchPlayers();
-				YahtzeeData.setTurnCounter();
-			}
-		}
-		else if(command == "yahtzee")
-		{
-			int score = YahtzeeData.checkYahtzee();
-			boolean confirm = YahtzeeData.confirmBox(score, "Yahtzee");
-			if(confirm)
-			{
-				YahtzeeData.players.get(YahtzeeData.currentPlayer).yahtzeeScored = true;
-				YahtzeeData.players.get(YahtzeeData.currentPlayer).yahtzee = score;
-				f.getContentPane().removeAll();
-				f.repaint();
-				YahtzeeData.switchPlayers();
-				YahtzeeData.setTurnCounter();
-			}
-		}
-		if(command == "reRoll")
-		{
-			f.getContentPane().removeAll();
-			f.repaint();
-			
-			for(int x = 0; x < diceSelectors.length; x++)
-			{
-				if(diceSelectors[x].isSelected() == false)
+		
+			case "oneBox":
 				{
-					YahtzeeDice.rollSingleDie(x);
+					int score = YahtzeeData.checkScoreUpper(1);
+					boolean confirm = YahtzeeData.confirmBox(score, "ONES");
+					if(confirm == true) 
+					{ 
+						YahtzeeData.players.get(YahtzeeData.currentPlayer).upperScored[0] = true;
+						YahtzeeData.players.get(YahtzeeData.currentPlayer).upperScores[0] = score;
+					}	
 				}
-			}
-			YahtzeeData.setTurnCounter();
+			break;
+			
+			case "twoBox":
+				{
+					int score = YahtzeeData.checkScoreUpper(2);
+					boolean confirm = YahtzeeData.confirmBox(score, "TWOS");
+					if(confirm)
+					{
+						YahtzeeData.players.get(YahtzeeData.currentPlayer).upperScored[1] = true;
+						YahtzeeData.players.get(YahtzeeData.currentPlayer).upperScores[1] = score;			}
+				}
+				break;
+				
+			case "threeBox":
+				{
+					int score = YahtzeeData.checkScoreUpper(3);
+					boolean confirm = YahtzeeData.confirmBox(score, "THREES");
+					if(confirm)
+					{
+						YahtzeeData.players.get(YahtzeeData.currentPlayer).upperScored[2] = true;
+						YahtzeeData.players.get(YahtzeeData.currentPlayer).upperScores[2] = score;
+					}
+				}
+				break;
+				
+			case "fourBox":
+				{
+					int score = YahtzeeData.checkScoreUpper(4);
+					boolean confirm = YahtzeeData.confirmBox(score, "FOURS");
+					if(confirm)
+					{
+						YahtzeeData.players.get(YahtzeeData.currentPlayer).upperScored[3] = true;
+						YahtzeeData.players.get(YahtzeeData.currentPlayer).upperScores[3] = score;
+					}
+				}
+				break;
+			
+			case "fiveBox":
+				{
+					int score = YahtzeeData.checkScoreUpper(5);
+					boolean confirm = YahtzeeData.confirmBox(score, "FIVES");
+					if(confirm)
+					{
+						YahtzeeData.players.get(YahtzeeData.currentPlayer).upperScored[4] = true;
+						YahtzeeData.players.get(YahtzeeData.currentPlayer).upperScores[4] = score;
+					}
+				}
+				break;
+			
+			case "sixBox":
+				{
+					int score = YahtzeeData.checkScoreUpper(6);
+					boolean confirm = YahtzeeData.confirmBox(score, "SIXES");
+					if(confirm)
+					{
+						YahtzeeData.players.get(YahtzeeData.currentPlayer).upperScored[5] = true;
+						YahtzeeData.players.get(YahtzeeData.currentPlayer).upperScores[5] = score;
+					}
+				}
+				break;
+				
+			case "threeOfKind":
+				{
+					int score = YahtzeeData.checkNumOfKind(3);
+					boolean confirm = YahtzeeData.confirmBox(score, "3 of a Kind");
+					if(confirm)
+					{
+						YahtzeeData.players.get(YahtzeeData.currentPlayer).threeOfKindScored = true;
+						YahtzeeData.players.get(YahtzeeData.currentPlayer).threeOfKind = score;
+					}
+				}
+				break;
+				
+			case "fourOfKind":
+				{
+					int score = YahtzeeData.checkNumOfKind(4);
+					boolean confirm = YahtzeeData.confirmBox(score, "4 of a Kind");
+					if(confirm)
+					{
+						YahtzeeData.players.get(YahtzeeData.currentPlayer).fourOfKindScored = true;
+						YahtzeeData.players.get(YahtzeeData.currentPlayer).fourOfKind = score;
+					}
+				}
+			break;
+			
+			case "fullHouse":
+				{
+					int score = YahtzeeData.checkFullHouse();
+					boolean confirm = YahtzeeData.confirmBox(score, "Full House");
+					if(confirm)
+					{
+						YahtzeeData.players.get(YahtzeeData.currentPlayer).fullHouseScored = true;
+						YahtzeeData.players.get(YahtzeeData.currentPlayer).fullHouse = score;
+					}
+				}
+			
+			case "smallStraight":
+				{
+					int score = YahtzeeData.checkStraight(4);
+					boolean confirm = YahtzeeData.confirmBox(score, "Small Straight");
+					if(confirm)
+					{
+						YahtzeeData.players.get(YahtzeeData.currentPlayer).smallStraightScored = true;
+						YahtzeeData.players.get(YahtzeeData.currentPlayer).smallStraight = score;
+					}
+				}
+				break;
+			
+			case "largeStraight":
+				{
+					int score = YahtzeeData.checkStraight(5);
+					boolean confirm = YahtzeeData.confirmBox(score,  "Large Straight");
+					if(confirm)
+					{
+						YahtzeeData.players.get(YahtzeeData.currentPlayer).largeStraightScored = true;
+						YahtzeeData.players.get(YahtzeeData.currentPlayer).largeStraight = score;
+					}
+				}
+			break;
+			
+			case "chance":
+				{
+					int score = YahtzeeData.checkChance();
+					boolean confirm = YahtzeeData.confirmBox(score, "Chance");
+					if(confirm)
+					{
+						YahtzeeData.players.get(YahtzeeData.currentPlayer).chanceScored = true;
+						YahtzeeData.players.get(YahtzeeData.currentPlayer).chance = score;
+					}
+				}
+				break;
+			
+			case "yahtzee":
+				{
+					int score = YahtzeeData.checkYahtzee();
+					boolean confirm = YahtzeeData.confirmBox(score, "Yahtzee");
+					if(confirm)
+					{
+						YahtzeeData.players.get(YahtzeeData.currentPlayer).yahtzeeScored = true;
+						YahtzeeData.players.get(YahtzeeData.currentPlayer).yahtzee = score;
+					}
+				}
+				break;
+				
+			case "reRoll":
+				{		
+					f.getContentPane().removeAll();
+					f.repaint();
+					
+					//TODO: Do in for each loop?
+					
+					for(int x = 0; x < diceSelectors.length; x++)
+					{
+						if(diceSelectors[x].isSelected() == false)
+						{
+							YahtzeeDice.rollSingleDie(x);
+						}
+					}
+					YahtzeeData.setTurnCounter();
+				}
+				break;
+				
+			case "scoreButton":
+				{
+					f.getContentPane().removeAll();
+					f.repaint();
+					scoreCard();
+				}
+				break;
+				
+			case "onePlayer":
+				{
+					YahtzeeData.setPlayers(1);
+				}
+				break;
+				
+			case "twoPlayer":
+				{
+					YahtzeeData.setPlayers(2);
+				}
+				break;
+				
+			case "threePlayer":
+				{
+					YahtzeeData.setPlayers(3);
+				}
+				break;
+			
+			case "fourPlayer":
+				{
+					YahtzeeData.setPlayers(4);
+				}
+				break;
+				
+			default:
+				 break;
 		}
-		else if(command == "scoreButton")
+		
+		if(command == "onePlayer" || command == "twoPlayer" 
+				|| command == "threePlayer" || command == "fourPlayer")
+				{
+					f.getContentPane().removeAll();
+					f.repaint();
+					YahtzeeData.setTurnCounter();
+				}
+		else if(command == "oneBox" || command == "twoBox" || command == "threeBox" || command == "fourBox" 
+				|| command == "fiveBox" || command == "sixBox" || command == "threeOfKind" || command == "fourOfKind" 
+				|| command == "fullHouse" || command == "smallStraight" || command == "largeStraight" || command == "chance"
+				|| command == "yahtzee")
 		{
 			f.getContentPane().removeAll();
 			f.repaint();
-			scoreCard();
-		}
-		else if(command == "onePlayer")
-		{
-			f.getContentPane().removeAll();
-			f.repaint();
-			YahtzeeData.setPlayers(1);
+			YahtzeeData.switchPlayers();
 			YahtzeeData.setTurnCounter();
 		}
-		else if(command == "twoPlayer")
-		{
-			f.getContentPane().removeAll();
-			f.repaint();
-			YahtzeeData.setPlayers(2);
-			YahtzeeData.setTurnCounter();
-		}
-		else if(command == "threePlayer")
-		{
-			f.getContentPane().removeAll();
-			f.repaint();
-			YahtzeeData.setPlayers(3);
-			YahtzeeData.setTurnCounter();
-		}
-		else if(command == "fourPlayer")
-		{
-			f.getContentPane().removeAll();
-			f.repaint();
-			YahtzeeData.setPlayers(4);
-			YahtzeeData.setTurnCounter();
-		}
+		
 	}
 	
 }

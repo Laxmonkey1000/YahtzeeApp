@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -131,11 +133,11 @@ public class YahtzeeData
 	{
 		byte sameCounter = 0;
 		byte score = 0;
-		int length = YahtzeeDice.dice.length;
-		int sides = YahtzeeDice.sidesNum;
-		for(int x = 1; x < sides + 1; x++)
+		for(int x = 1; x < YahtzeeDice.sidesNum + 1; x++)
 		{
-			for(int i = 0; i < length; i++)
+			sameCounter = 0;
+			
+			for(int i = 0; i < YahtzeeDice.dice.length; i++)
 			{
 				if(x == YahtzeeDice.dice[i]) 
 				{ 
@@ -144,17 +146,19 @@ public class YahtzeeData
 			}
 			if(sameCounter >= num) 
 			{
-				for(int i = 0; i < length; i++)
+				for(int i = 0; i < YahtzeeDice.dice.length; i++)
 				{
 					score += YahtzeeDice.dice[i];
 				}
-				return score;
+				break;
 			}
-			
-			sameCounter = 0;
+			else
+			{
+				score = 0;
+			}
 		}
 
-		return 0;
+		return score;
 	}
 	
 	/** Checks if there is a fullHouse and returns score
@@ -163,7 +167,7 @@ public class YahtzeeData
 	 */
 	public static int checkFullHouse()
 	{
-		byte
+		int
 		countOne = 0,
 		countTwo = 0,
 		countThree = 0,
@@ -171,51 +175,41 @@ public class YahtzeeData
 		countFive = 0,
 		countSix = 0;
 		
-		int length = YahtzeeDice.dice.length;
-		int sides = YahtzeeDice.sidesNum;
-		
-		for(int x = 1; x < sides + 1; x++)
-		{
-			for(int i = 0; i < length; i++)
+		int score = 0;
+
+			for(int i = 0; i < YahtzeeDice.dice.length; i++)
 			{
-				switch(x)
+				switch(YahtzeeDice.dice[i])
 				{
 					case 1:
-						if(YahtzeeDice.dice[i] == 1)
 							countOne++;
 						break;
 					case 2:
-						if(YahtzeeDice.dice[i] == 2)
 							countTwo++;
 						break;
 					case 3:
-						if(YahtzeeDice.dice[i] == 3)
 							countThree++;
 						break;
 					case 4:
-						if(YahtzeeDice.dice[i] == 4)
 							countFour++;
 						break;
 					case 5:
-						if(YahtzeeDice.dice[i] == 5)
 							countFive++;
 						break;
 					case 6:
-						if(YahtzeeDice.dice[i] == 6)
 							countSix++;
 						break;
 				}
 			}
-		}
 		
 	if(countOne == 3 || countTwo == 3 || countThree == 3 || countFour == 3 || countFive == 3 || countSix == 3)
 	{
 		if(countOne == 2 || countTwo == 2 || countThree == 2 || countFour == 2 || countFive == 2 || countSix == 2)
 		{
-			return 25;
+			score = 25;
 		}
 	}
-		return 0;
+		return score;
 	}
 	
 	/** Checks if there is a 4 or 5 die straight and returns
@@ -225,20 +219,21 @@ public class YahtzeeData
 	 */
 	public static int checkStraight(int num)
 	{
-		YahtzeeDice.sortDice();
+		Arrays.sort(YahtzeeDice.dice);
 		byte counter = 0;
 		int length = YahtzeeDice.dice.length;
+		int score = 0;
 		
-		try
-		{
+		try //Exception happens when num = 5, and there is no straight present
+		{   //The loop will try to access an non-existing 6th dice
 			for(int x = 0; x < length; x++)
 			{
 				if(counter == num-1)
 				{ 
-					if(num == 4) { return 30; }
-					else if(num == 5) { return 40; }
+					if(num == 4) { score = 30; break; }
+					else if(num == 5) { score = 40; break;}
 				}
-				if(YahtzeeDice.dice[x] + 1 == YahtzeeDice.dice[(x+1)])
+				else if(YahtzeeDice.dice[x] + 1 == YahtzeeDice.dice[(x+1)])
 				{ 
 					counter++; 
 				}
@@ -252,11 +247,9 @@ public class YahtzeeData
 				}
 			}
 		} catch(Exception e)
-		{
-			return 0;
-		}
+			{}
 		
-		return 0;
+		return score;
 	}
 	
 	/** Adds value of all dice and returns it for chance box 
@@ -279,13 +272,12 @@ public class YahtzeeData
 	 */
 	public static int checkYahtzee()
 	{
-		int length = YahtzeeDice.dice.length;
-		int sides = YahtzeeDice.sidesNum;
+		int score = 0;
 		
 		byte counter = 0;
-		for(int x = 0; x < sides + 1; x++)
+		for(int x = 0; x < YahtzeeDice.sidesNum + 1; x++)
 		{
-			for(int i = 0; i < length; i++)
+			for(int i = 0; i < YahtzeeDice.dice.length; i++)
 			{
 				if(YahtzeeDice.dice[i] == x) 
 				{ 
@@ -294,7 +286,8 @@ public class YahtzeeData
 			}
 			if(counter == 5)
 			{ 
-				return 50;
+				score = 50; 
+				break;
 			}
 			else 
 			{ 
@@ -302,7 +295,7 @@ public class YahtzeeData
 			}
 		}
 		
-		return 0;
+		return score;
 	}
 	
 	/** Displays pop-up message prompting user to confirm calculated
