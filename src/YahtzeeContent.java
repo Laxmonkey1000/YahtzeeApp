@@ -28,17 +28,17 @@ public class YahtzeeContent implements ActionListener
 	/** Used to transfer to score screen */
 	scoreButton = new JButton(),
 	/** Used to score box ones */
-	oneBox = new JButton("Ones"),
+	oneBox = new JButton(),
 	/** Used to score box twos */
-	twoBox = new JButton("Twos"),
+	twoBox = new JButton(),
 	/** Used to score box threes */
-	threeBox = new JButton("Threes"),
+	threeBox = new JButton(),
 	/** Used to score box fours */
-	fourBox = new JButton("Fours"),
+	fourBox = new JButton(),
 	/** Used to score box fives */
-	fiveBox = new JButton("Fives"),
+	fiveBox = new JButton(),
 	/** Used to score box sixes */
-	sixBox = new JButton("Sixes"),
+	sixBox = new JButton(),
 	/** Used to score box three of a kind */
 	threeOfKind = new JButton("Three of a Kind"),
 	/** Used to score box four of a kind */
@@ -154,26 +154,44 @@ public class YahtzeeContent implements ActionListener
 		scoreButton.addActionListener(this);
 		scoreButton.setActionCommand("scoreButton");
 		
+		oneBox.setIcon(new ImageIcon("H:/git/Yahtzee/res/ones.png"));
+		oneBox.setContentAreaFilled(false);
+		oneBox.setBorderPainted(false);
 		oneBox.setBounds(425, 175, 150, 50);
 		oneBox.addActionListener(this);
 		oneBox.setActionCommand("oneBox");
 		
+		twoBox.setIcon(new ImageIcon("H:/git/Yahtzee/res/twos.png"));
+		twoBox.setContentAreaFilled(false);
+		twoBox.setBorderPainted(false);
 		twoBox.setBounds(425, 225, 150, 50);
 		twoBox.addActionListener(this);
 		twoBox.setActionCommand("twoBox");
 		
+		threeBox.setIcon(new ImageIcon("H:/git/Yahtzee/res/threes.png"));
+		threeBox.setContentAreaFilled(false);
+		threeBox.setBorderPainted(false);
 		threeBox.setBounds(425, 275, 150, 50);
 		threeBox.addActionListener(this);
 		threeBox.setActionCommand("threeBox");
 
+		fourBox.setIcon(new ImageIcon("H:/git/Yahtzee/res/fours.png"));
+		fourBox.setContentAreaFilled(false);
+		fourBox.setBorderPainted(false);
 		fourBox.setBounds(650, 175, 150, 50);
 		fourBox.addActionListener(this);
 		fourBox.setActionCommand("fourBox");
 		
+		fiveBox.setIcon(new ImageIcon("H:/git/Yahtzee/res/fives.png"));
+		fiveBox.setContentAreaFilled(false);
+		fiveBox.setBorderPainted(false);
 		fiveBox.setBounds(650, 225, 150, 50);
 		fiveBox.addActionListener(this);
 		fiveBox.setActionCommand("fiveBox");
 		
+		sixBox.setIcon(new ImageIcon("H:/git/Yahtzee/res/sixes.png"));
+		sixBox.setContentAreaFilled(false);
+		sixBox.setBorderPainted(false);
 		sixBox.setBounds(650, 275, 150, 50);
 		sixBox.addActionListener(this);
 		sixBox.setActionCommand("sixBox");
