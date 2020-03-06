@@ -1,4 +1,4 @@
-import java.util.Arrays;
+ import java.util.Arrays;
 import java.util.Random;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -73,7 +73,7 @@ public class YahtzeeDice
 					break;
 			}
 			
-			dicePics[x].setBounds(140*(x+1), 400, 64, 64);
+			dicePics[x].setBounds(140*(x+1), 375, 64, 64);
 			YahtzeeFrame.f.add(dicePics[x]);
 		}
 		

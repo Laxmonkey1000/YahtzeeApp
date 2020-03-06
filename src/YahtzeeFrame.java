@@ -15,6 +15,8 @@ public class YahtzeeFrame extends YahtzeeContent implements ActionListener
 	 */
 	public static JFrame f = new JFrame();
 	
+	public static boolean confirm;
+	
 	/** Used to call constructors and begin menu Seqeuence
 	 * @param args Unused */
 	public static void main(String[] args)
@@ -61,9 +63,11 @@ public class YahtzeeFrame extends YahtzeeContent implements ActionListener
 		}
 		
 		scoreButton.setBounds(450, 500, 300, 100);
-		playerText.setBounds(25, 25, 250, 50);
-		playerLabel.setBounds(225,25,50,50);
-		xIcon1.setBounds(700,50,50,50);
+		playerText.setBounds(0, 25, 300, 50);
+		playerLabel.setBounds(275,25,50,50);
+		rollLabel.setBounds(500, 25, 150, 50);
+		xIcon1.setBounds(650,25,50,50);
+		f.add(rollLabel);
 		f.add(xIcon1);
 		f.add(turnLabel);
 		f.add(playerLabel);
@@ -78,7 +82,12 @@ public class YahtzeeFrame extends YahtzeeContent implements ActionListener
 	public static void turnTwo()
 	{
 		YahtzeeDice.displayDice();
-		xIcon2.setBounds(750,50,50,50);
+		playerText.setBounds(0, 25, 300, 50);
+		playerLabel.setBounds(275,25,50,50);
+		rollLabel.setBounds(500, 25, 150, 50);
+		xIcon1.setBounds(650,25,50,50);
+		xIcon2.setBounds(700,25,50,50);
+		f.add(rollLabel);
 		f.add(xIcon1);
 		f.add(xIcon2);
 		f.add(turnLabel);
@@ -86,6 +95,18 @@ public class YahtzeeFrame extends YahtzeeContent implements ActionListener
 		f.add(playerText);
 		f.add(reRoll);
 		f.add(scoreButton);
+		
+		if(diceSelectors[0].isSelected())
+			{ f.add(die1); }
+		if(diceSelectors[1].isSelected())
+			{ f.add(die2); }
+		if(diceSelectors[2].isSelected())
+			{ f.add(die3); }
+		if(diceSelectors[3].isSelected())
+			{ f.add(die4); }
+		if(diceSelectors[4].isSelected())
+			{ f.add(die5); }
+		
 		f.add(tableBackground);
 	}
 	
@@ -99,10 +120,11 @@ public class YahtzeeFrame extends YahtzeeContent implements ActionListener
 		f.validate();
 		f.repaint();
 		YahtzeeData.displayScores();
-		playerLabel.setBounds(575, 15, 50, 50);
-		playerText.setBounds(375, 15, 300, 50);
-		xIcon1.setBounds(700, 10, 50, 50);
-		xIcon2.setBounds(750, 10, 50, 50);
+		playerLabel.setBounds(600, 15, 150, 50);
+		playerText.setBounds(325, 15, 300, 50);
+		rollLabel.setBounds(375, 575, 150, 50);
+		xIcon1.setBounds(525, 575, 50, 50);
+		xIcon2.setBounds(575, 575, 50, 50);
 		
 		switch(YahtzeeData.turnCounter)
 		{
@@ -113,6 +135,11 @@ public class YahtzeeFrame extends YahtzeeContent implements ActionListener
 			case 1:
 				f.add(xIcon1);
 		}
+		
+		if(YahtzeeData.turnCounter < 3)
+			{ f.add(backButton); }
+		
+		f.add(rollLabel);
 		f.add(playerLabel);
 		f.add(playerText);
 		f.add(scoreCard);
@@ -125,32 +152,33 @@ public class YahtzeeFrame extends YahtzeeContent implements ActionListener
 		//TODO: DO FINAL SCORES DISPLAY MECH.
 		switch(YahtzeeData.numOfPlayers)
 		{
-		case 4:
-			int p4Score = YahtzeeData.players.get(3).calculateScore();
-			JLabel p4Label = new JLabel("Player 4 Score is: " + p4Score);
-			p4Label.setFont(p4Label.getFont().deriveFont(32.0f));
-			p4Label.setBounds(300, 350, 500, 100);
-			f.add(p4Label);
-		case 3:
-			int p3Score = YahtzeeData.players.get(2).calculateScore();
-			JLabel p3Label = new JLabel("Player 3 Score is: " + p3Score);
-			p3Label.setFont(p3Label.getFont().deriveFont(32.0f));
-			p3Label.setBounds(300, 250, 500, 100);
-			f.add(p3Label);
-		case 2:
-			int p2Score = YahtzeeData.players.get(1).calculateScore();
-			JLabel p2Label = new JLabel("Player 2 Score is: " + p2Score);
-			p2Label.setFont(p2Label.getFont().deriveFont(32.0f));
-			p2Label.setBounds(300, 150, 500, 100);
-			f.add(p2Label);
-		case 1:
-			int p1Score = YahtzeeData.players.get(0).calculateScore();
-			JLabel p1Label = new JLabel("Player 1 Score is: " + p1Score);
-			p1Label.setFont(p1Label.getFont().deriveFont(32.0f));
-			p1Label.setBounds(300, 50, 500, 100);
-			f.add(p1Label);
+			case 4:
+				JLabel p4Score = new JLabel(Integer.toString(YahtzeeData.players.get(3).calculateScore()));
+				p4Score.setFont(p4Score.getFont().deriveFont(32.0f));
+				p4Score.setBounds(600, 445, 500, 100);
+				f.add(p4Score);
+				f.add(p4ScoreLabel);
+			case 3:
+				JLabel p3Score = new JLabel(Integer.toString(YahtzeeData.players.get(2).calculateScore()));
+				p3Score.setFont(p3Score.getFont().deriveFont(32.0f));
+				p3Score.setBounds(600, 345, 500, 100);
+				f.add(p3Score);
+				f.add(p3ScoreLabel);
+			case 2:
+				JLabel p2Score = new JLabel(Integer.toString(YahtzeeData.players.get(1).calculateScore()));
+				p2Score.setFont(p2Score.getFont().deriveFont(32.0f));
+				p2Score.setBounds(600, 245, 500, 100);
+				f.add(p2Score);
+				f.add(p2ScoreLabel);
+			case 1:
+				JLabel p1Score = new JLabel(Integer.toString(YahtzeeData.players.get(0).calculateScore()));
+				p1Score.setFont(p1Score.getFont().deriveFont(32.0f));
+				p1Score.setBounds(600, 145, 500, 100);
+				f.add(p1Score);
+				f.add(p1ScoreLabel);
 		}
-	
+		
+		f.add(finalScores);
 		f.add(tableBackground);
 	}
 
@@ -165,10 +193,105 @@ public class YahtzeeFrame extends YahtzeeContent implements ActionListener
 		switch(command)
 		{
 		
+			case "0":
+			{
+				if(diceSelectors[0].isSelected())
+				{
+					f.remove(tableBackground);
+					f.validate();
+					f.repaint();
+					f.add(die1);
+					f.add(tableBackground);
+				}
+				else
+				{
+					f.remove(die1);
+					f.validate();
+					f.repaint();
+				}
+			}
+			break;
+			
+			case "1":
+			{
+				if(diceSelectors[1].isSelected())
+				{
+					f.remove(tableBackground);
+					f.validate();
+					f.repaint();
+					f.add(die2);
+					f.add(tableBackground);
+				}
+				else
+				{
+					f.remove(die2);
+					f.validate();
+					f.repaint();
+				}
+			}
+			break;
+			
+			case "2":
+			{
+				if(diceSelectors[2].isSelected())
+				{
+					f.remove(tableBackground);
+					f.validate();
+					f.repaint();
+					f.add(die3);
+					f.add(tableBackground);
+				}
+				else
+				{
+					f.remove(die3);
+					f.validate();
+					f.repaint();
+				}
+			}
+			break;
+			
+			case "3":
+			{
+				if(diceSelectors[3].isSelected())
+				{
+					f.remove(tableBackground);
+					f.validate();
+					f.repaint();
+					f.add(die4);
+					f.add(tableBackground);
+				}
+				else
+				{
+					f.remove(die4);
+					f.validate();
+					f.repaint();
+				}
+			}
+			break;
+			
+			case "4":
+			{
+				if(diceSelectors[4].isSelected())
+				{
+					f.remove(tableBackground);
+					f.validate();
+					f.repaint();
+					f.add(die5);
+					f.add(tableBackground);
+				}
+				else
+				{
+					f.remove(die5);
+					f.validate();
+					f.repaint();
+				}
+			}
+			break;
+			
 			case "oneBox":
 				{
 					int score = YahtzeeData.checkScoreUpper(1);
-					boolean confirm = YahtzeeData.confirmBox(score, "ONES");
+					confirm = YahtzeeData.confirmBox(score, "ONES");
 					if(confirm == true) 
 					{ 
 						YahtzeeData.players.get(YahtzeeData.currentPlayer).upperScored[0] = true;
@@ -180,7 +303,7 @@ public class YahtzeeFrame extends YahtzeeContent implements ActionListener
 			case "twoBox":
 				{
 					int score = YahtzeeData.checkScoreUpper(2);
-					boolean confirm = YahtzeeData.confirmBox(score, "TWOS");
+					confirm = YahtzeeData.confirmBox(score, "TWOS");
 					if(confirm)
 					{
 						YahtzeeData.players.get(YahtzeeData.currentPlayer).upperScored[1] = true;
@@ -191,7 +314,7 @@ public class YahtzeeFrame extends YahtzeeContent implements ActionListener
 			case "threeBox":
 				{
 					int score = YahtzeeData.checkScoreUpper(3);
-					boolean confirm = YahtzeeData.confirmBox(score, "THREES");
+					confirm = YahtzeeData.confirmBox(score, "THREES");
 					if(confirm)
 					{
 						YahtzeeData.players.get(YahtzeeData.currentPlayer).upperScored[2] = true;
@@ -203,7 +326,7 @@ public class YahtzeeFrame extends YahtzeeContent implements ActionListener
 			case "fourBox":
 				{
 					int score = YahtzeeData.checkScoreUpper(4);
-					boolean confirm = YahtzeeData.confirmBox(score, "FOURS");
+					confirm = YahtzeeData.confirmBox(score, "FOURS");
 					if(confirm)
 					{
 						YahtzeeData.players.get(YahtzeeData.currentPlayer).upperScored[3] = true;
@@ -215,7 +338,7 @@ public class YahtzeeFrame extends YahtzeeContent implements ActionListener
 			case "fiveBox":
 				{
 					int score = YahtzeeData.checkScoreUpper(5);
-					boolean confirm = YahtzeeData.confirmBox(score, "FIVES");
+					confirm = YahtzeeData.confirmBox(score, "FIVES");
 					if(confirm)
 					{
 						YahtzeeData.players.get(YahtzeeData.currentPlayer).upperScored[4] = true;
@@ -227,7 +350,7 @@ public class YahtzeeFrame extends YahtzeeContent implements ActionListener
 			case "sixBox":
 				{
 					int score = YahtzeeData.checkScoreUpper(6);
-					boolean confirm = YahtzeeData.confirmBox(score, "SIXES");
+					confirm = YahtzeeData.confirmBox(score, "SIXES");
 					if(confirm)
 					{
 						YahtzeeData.players.get(YahtzeeData.currentPlayer).upperScored[5] = true;
@@ -239,7 +362,7 @@ public class YahtzeeFrame extends YahtzeeContent implements ActionListener
 			case "threeOfKind":
 				{
 					int score = YahtzeeData.checkNumOfKind(3);
-					boolean confirm = YahtzeeData.confirmBox(score, "3 of a Kind");
+					confirm = YahtzeeData.confirmBox(score, "3 of a Kind");
 					if(confirm)
 					{
 						YahtzeeData.players.get(YahtzeeData.currentPlayer).threeOfKindScored = true;
@@ -251,7 +374,7 @@ public class YahtzeeFrame extends YahtzeeContent implements ActionListener
 			case "fourOfKind":
 				{
 					int score = YahtzeeData.checkNumOfKind(4);
-					boolean confirm = YahtzeeData.confirmBox(score, "4 of a Kind");
+					confirm = YahtzeeData.confirmBox(score, "4 of a Kind");
 					if(confirm)
 					{
 						YahtzeeData.players.get(YahtzeeData.currentPlayer).fourOfKindScored = true;
@@ -263,7 +386,7 @@ public class YahtzeeFrame extends YahtzeeContent implements ActionListener
 			case "fullHouse":
 				{
 					int score = YahtzeeData.checkFullHouse();
-					boolean confirm = YahtzeeData.confirmBox(score, "Full House");
+					confirm = YahtzeeData.confirmBox(score, "Full House");
 					if(confirm)
 					{
 						YahtzeeData.players.get(YahtzeeData.currentPlayer).fullHouseScored = true;
@@ -274,7 +397,7 @@ public class YahtzeeFrame extends YahtzeeContent implements ActionListener
 			case "smallStraight":
 				{
 					int score = YahtzeeData.checkStraight(4);
-					boolean confirm = YahtzeeData.confirmBox(score, "Small Straight");
+					confirm = YahtzeeData.confirmBox(score, "Small Straight");
 					if(confirm)
 					{
 						YahtzeeData.players.get(YahtzeeData.currentPlayer).smallStraightScored = true;
@@ -286,7 +409,7 @@ public class YahtzeeFrame extends YahtzeeContent implements ActionListener
 			case "largeStraight":
 				{
 					int score = YahtzeeData.checkStraight(5);
-					boolean confirm = YahtzeeData.confirmBox(score,  "Large Straight");
+					confirm = YahtzeeData.confirmBox(score,  "Large Straight");
 					if(confirm)
 					{
 						YahtzeeData.players.get(YahtzeeData.currentPlayer).largeStraightScored = true;
@@ -298,7 +421,7 @@ public class YahtzeeFrame extends YahtzeeContent implements ActionListener
 			case "chance":
 				{
 					int score = YahtzeeData.checkChance();
-					boolean confirm = YahtzeeData.confirmBox(score, "Chance");
+					confirm = YahtzeeData.confirmBox(score, "Chance");
 					if(confirm)
 					{
 						YahtzeeData.players.get(YahtzeeData.currentPlayer).chanceScored = true;
@@ -310,7 +433,7 @@ public class YahtzeeFrame extends YahtzeeContent implements ActionListener
 			case "yahtzee":
 				{
 					int score = YahtzeeData.checkYahtzee();
-					boolean confirm = YahtzeeData.confirmBox(score, "Yahtzee");
+					confirm = YahtzeeData.confirmBox(score, "Yahtzee");
 					if(confirm)
 					{
 						YahtzeeData.players.get(YahtzeeData.currentPlayer).yahtzeeScored = true;
@@ -340,8 +463,18 @@ public class YahtzeeFrame extends YahtzeeContent implements ActionListener
 			case "scoreButton":
 				{
 					f.getContentPane().removeAll();
-					f.repaint();
 					scoreCard();
+				}
+				break;
+			
+			case "backButton":
+				{
+					f.getContentPane().removeAll();
+					f.repaint();
+					if(YahtzeeData.turnCounter == 1)
+						{ turnOne(); }
+					else
+						{ turnTwo(); }
 				}
 				break;
 				
@@ -385,10 +518,14 @@ public class YahtzeeFrame extends YahtzeeContent implements ActionListener
 				|| command == "fullHouse" || command == "smallStraight" || command == "largeStraight" || command == "chance"
 				|| command == "yahtzee")
 		{
-			f.getContentPane().removeAll();
-			f.repaint();
-			YahtzeeData.switchPlayers();
-			YahtzeeData.setTurnCounter();
+			
+			if(confirm)
+			{
+				f.getContentPane().removeAll();
+				f.repaint();
+				YahtzeeData.switchPlayers();
+				YahtzeeData.setTurnCounter();
+			}
 		}
 		
 	}

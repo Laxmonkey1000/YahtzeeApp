@@ -15,6 +15,8 @@ public class YahtzeeContent implements ActionListener
 	public static JCheckBox[] diceSelectors = new JCheckBox[5];
 	
 	static JButton
+	/** Transfers from score screen to roll */
+	backButton = new JButton(),
 	/** If selected, numOfPlayers is set to 1 */
 	onePlayer = new JButton(),
 	/** If selected, numOfPlayers is set to 2 */
@@ -40,21 +42,31 @@ public class YahtzeeContent implements ActionListener
 	/** Used to score box sixes */
 	sixBox = new JButton(),
 	/** Used to score box three of a kind */
-	threeOfKind = new JButton("Three of a Kind"),
+	threeOfKind = new JButton(),
 	/** Used to score box four of a kind */
-	fourOfKind = new JButton("Four of a Kind"),
+	fourOfKind = new JButton(),
 	/**Used to score box full House */
-	fullHouse = new JButton("Full House"),
+	fullHouse = new JButton(),
 	/** Used to score box small Straight */
-	smallStraight = new JButton("Small Straight"),
+	smallStraight = new JButton(),
 	/** Used to score box large straight */
-	largeStraight = new JButton("Large Straight"),
+	largeStraight = new JButton(),
 	/** Used to score box chance */
-	chance = new JButton("Chance"),
+	chance = new JButton(),
 	/** Used to score box  yahtzee */
-	yahtzee = new JButton("YAHTZEE");
+	yahtzee = new JButton();
 	
 	static JLabel
+	die1 = new JLabel(),
+	die2 = new JLabel(),
+	die3 = new JLabel(),
+	die4 = new JLabel(),
+	die5 = new JLabel(),
+	finalScores = new JLabel(),
+	p1ScoreLabel = new JLabel(),
+	p2ScoreLabel = new JLabel(),
+	p3ScoreLabel = new JLabel(),
+	p4ScoreLabel = new JLabel(),
 	/** Stores x image for showing turnCounter visually */
 	xIcon1 = new JLabel(),
 	/** Stores x image for showing turnCounter visually */
@@ -62,11 +74,12 @@ public class YahtzeeContent implements ActionListener
 	/** Stores x image for showing turnCounter visually */
 	xIcon3 = new JLabel(),
 	/** Adds instruction for player on what checkBoxes do */
-	turnLabel = new JLabel("Select Die to Save"),
+	turnLabel = new JLabel(),
 	/** Adds a turn: Player label to know who is rolling */
-	playerText = new JLabel("Turn: Player"),
+	playerText = new JLabel(),
 	/** Displays which player is rolling currently */
-	playerLabel = new JLabel("1"),
+	playerLabel = new JLabel(),
+	rollLabel = new JLabel(),
 	/** Image with Yahtzee Menu name and background */
 	menuBackground = new JLabel(),
 	/** Image with background for visual effects */
@@ -80,26 +93,54 @@ public class YahtzeeContent implements ActionListener
 		for(int x = 0; x < diceSelectors.length; x++)
 		{
 			diceSelectors[x] = new JCheckBox();
-			diceSelectors[x].setBounds(140*(x+1), 300, 64, 64);
-			diceSelectors[x].setVisible(true);
+			diceSelectors[x].setBounds(140*(x+1), 375, 64, 64);
+			diceSelectors[x].setContentAreaFilled(false);
+			diceSelectors[x].setBorderPainted(false);
 			diceSelectors[x].addActionListener(this);
 			diceSelectors[x].setActionCommand(Integer.toString(x));
 		}
 		
+		die1.setIcon(new ImageIcon("H:/git/Yahtzee/res/dieBorder.png"));
+		die1.setBounds(138, 373, 68, 68);
+		die2.setIcon(new ImageIcon("H:/git/Yahtzee/res/dieBorder.png"));
+		die2.setBounds(278, 373, 68, 68);
+		die3.setIcon(new ImageIcon("H:/git/Yahtzee/res/dieBorder.png"));
+		die3.setBounds(418, 373, 68, 68);
+		die4.setIcon(new ImageIcon("H:/git/Yahtzee/res/dieBorder.png"));
+		die4.setBounds(558, 373, 68, 68);
+		die5.setIcon(new ImageIcon("H:/git/Yahtzee/res/dieBorder.png"));
+		die5.setBounds(698, 373, 68, 68);
+		
 		xIcon1.setIcon(new ImageIcon("H:/git/Yahtzee/res/x.png"));
 		xIcon2.setIcon(new ImageIcon("H:/git/Yahtzee/res/x.png"));
 		xIcon3.setIcon(new ImageIcon("H:/git/Yahtzee/res/x.png"));
-		xIcon3.setBounds(800,10,50,50);
+		xIcon3.setBounds(625,575,50,50);
 		
-		//TODO: MAKE INTO PICTURES WITH REVUE FONT
-		//TODO: ADD BACK BUTTON FOR SCORE CARD
+		finalScores.setIcon(new ImageIcon("H:/git/Yahtzee/res/finalScoresLabel.png"));
+		finalScores.setBounds(150, 50, 600, 50);
 		
-		turnLabel.setFont(turnLabel.getFont().deriveFont(42.0f));
-		turnLabel.setBounds(275, 200, 600, 50);
+		p1ScoreLabel.setIcon(new ImageIcon("H:/git/Yahtzee/res/p1ScoreLabel.png"));
+		p1ScoreLabel.setBounds(300, 150, 500, 100);
+		p2ScoreLabel.setIcon(new ImageIcon("H:/git/Yahtzee/res/p2ScoreLabel.png"));
+		p2ScoreLabel.setBounds(300, 250, 500, 100);
+		p3ScoreLabel.setIcon(new ImageIcon("H:/git/Yahtzee/res/p3ScoreLabel.png"));
+		p3ScoreLabel.setBounds(300, 350, 500, 100);
+		p4ScoreLabel.setIcon(new ImageIcon("H:/git/Yahtzee/res/p4ScoreLabel.png"));
+		p4ScoreLabel.setBounds(300, 450, 500, 100);
 		
-		playerText.setFont(playerText.getFont().deriveFont(32.0f));
+		playerText.setIcon(new ImageIcon("H:/git/Yahtzee/res/playerText.png"));
+		playerLabel.setIcon(new ImageIcon("H:/git/Yahtzee/res/1Label.png"));
+		rollLabel.setIcon(new ImageIcon("H:/git/Yahtzee/res/rollsLabel.png"));
 		
-		playerLabel.setFont(playerLabel.getFont().deriveFont(32.0f));
+		backButton.setIcon(new ImageIcon("H:/git/Yahtzee/res/backButton.png"));
+		backButton.setContentAreaFilled(false);
+		backButton.setBorderPainted(false);
+		backButton.setBounds(650, 500, 150, 50);
+		backButton.addActionListener(this);
+		backButton.setActionCommand("backButton");
+		
+		turnLabel.setIcon(new ImageIcon("H:/git/Yahtzee/res/turnLabel.png"));
+		turnLabel.setBounds(0, 0, 900, 700);
 		
 		onePlayer.setIcon(new ImageIcon("H:/git/Yahtzee/res/playerOne.png"));
 		onePlayer.setContentAreaFilled(false);
@@ -196,31 +237,52 @@ public class YahtzeeContent implements ActionListener
 		sixBox.addActionListener(this);
 		sixBox.setActionCommand("sixBox");
 		
+		threeOfKind.setIcon(new ImageIcon("H:/git/Yahtzee/res/3ofakind.png"));
+		threeOfKind.setContentAreaFilled(false);
+		threeOfKind.setBorderPainted(false);
 		threeOfKind.setBounds(425, 350, 150, 50);
 		threeOfKind.addActionListener(this);
 		threeOfKind.setActionCommand("threeOfKind");
 		
+		fourOfKind.setIcon(new ImageIcon("H:/git/Yahtzee/res/4ofakind.png"));
+		fourOfKind.setContentAreaFilled(false);
+		fourOfKind.setBorderPainted(false);
 		fourOfKind.setBounds(425, 400, 150, 50);
 		fourOfKind.addActionListener(this);
 		fourOfKind.setActionCommand("fourOfKind");
 		
+		fullHouse.setIcon(new ImageIcon("H:/git/Yahtzee/res/fullHouse.png"));
+		fullHouse.setContentAreaFilled(false);
+		fullHouse.setBorderPainted(false);
 		fullHouse.setBounds(425, 450, 150, 50);
 		fullHouse.addActionListener(this);
 		fullHouse.setActionCommand("fullHouse");
 		
+		smallStraight.setIcon(new ImageIcon("H:/git/Yahtzee/res/smallStraight.png"));
+		smallStraight.setContentAreaFilled(false);
+		smallStraight.setBorderPainted(false);
 		smallStraight.setBounds(650, 350, 150, 50);
 		smallStraight.addActionListener(this);
 		smallStraight.setActionCommand("smallStraight");
 		
+		largeStraight.setIcon(new ImageIcon("H:/git/Yahtzee/res/largeStraight.png"));
+		largeStraight.setContentAreaFilled(false);
+		largeStraight.setBorderPainted(false);
 		largeStraight.setBounds(650, 400, 150, 50);
 		largeStraight.addActionListener(this);
 		largeStraight.setActionCommand("largeStraight");
 		
+		chance.setIcon(new ImageIcon("H:/git/Yahtzee/res/chance.png"));
+		chance.setContentAreaFilled(false);
+		chance.setBorderPainted(false);
 		chance.setBounds(650, 450, 150, 50);
 		chance.addActionListener(this);
 		chance.setActionCommand("chance");
 		
-		yahtzee.setBounds(460, 525, 300, 100);
+		yahtzee.setIcon(new ImageIcon("H:/git/Yahtzee/res/yahtzee.png"));
+		yahtzee.setContentAreaFilled(false);
+		yahtzee.setBorderPainted(false);
+		yahtzee.setBounds(425, 500, 150, 50);
 		yahtzee.addActionListener(this);
 		yahtzee.setActionCommand("yahtzee");
 	}

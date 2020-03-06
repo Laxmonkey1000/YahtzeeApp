@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -455,7 +456,7 @@ public class YahtzeeData
 		}
 		else
 		{
-			turnCounter++; 
+			turnCounter++; //turnOne() = 1, turnTwo() = 2
 			
 			switch(turnCounter)
 			{
@@ -526,6 +527,14 @@ public class YahtzeeData
 				break;
 		}
 		
-		YahtzeeContent.playerLabel.setText(Integer.toString(currentPlayer + 1));
+		if(currentPlayer == 0)
+		{ YahtzeeContent.playerLabel.setIcon(new ImageIcon("H:/git/Yahtzee/res/1Label.png")); }
+		else if(currentPlayer == 1)
+		{ YahtzeeContent.playerLabel.setIcon(new ImageIcon("H:/git/Yahtzee/res/2Label.png")); }
+		else if(currentPlayer == 2)
+		{ YahtzeeContent.playerLabel.setIcon(new ImageIcon("H:/git/Yahtzee/res/3Label.png")); }
+		else if(currentPlayer == 3)
+		{ YahtzeeContent.playerLabel.setIcon(new ImageIcon("H:/git/Yahtzee/res/4Label.png")); }
+		
 	}
 }
