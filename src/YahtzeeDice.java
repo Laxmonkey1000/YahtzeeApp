@@ -54,22 +54,22 @@ public class YahtzeeDice
 			switch(dice[x])
 			{
 				case 1:
-					dicePics[x] = new JLabel(new ImageIcon("H:/git/Yahtzee/res//sideOne.png"));
+					dicePics[x] = new JLabel(new ImageIcon("C:/Users/laxmo/OneDrive/Documents/GitHub/Yahtzee/res//sideOne.png"));
 					break;
 				case 2:
-					dicePics[x] = new JLabel(new ImageIcon("H:/git/Yahtzee/res//sideTwo.png"));
+					dicePics[x] = new JLabel(new ImageIcon("C:/Users/laxmo/OneDrive/Documents/GitHub/Yahtzee/res//sideTwo.png"));
 					break;
 				case 3:
-					dicePics[x] = new JLabel(new ImageIcon("H:/git/Yahtzee/res//sideThree.png"));
+					dicePics[x] = new JLabel(new ImageIcon("C:/Users/laxmo/OneDrive/Documents/GitHub/Yahtzee/res//sideThree.png"));
 					break;
 				case 4:
-					dicePics[x] = new JLabel(new ImageIcon("H:/git/Yahtzee/res//sideFour.png"));
+					dicePics[x] = new JLabel(new ImageIcon("C:/Users/laxmo/OneDrive/Documents/GitHub/Yahtzee/res//sideFour.png"));
 					break;
 				case 5:
-					dicePics[x] = new JLabel(new ImageIcon("H:/git/Yahtzee/res//sideFive.png"));
+					dicePics[x] = new JLabel(new ImageIcon("C:/Users/laxmo/OneDrive/Documents/GitHub/Yahtzee/res//sideFive.png"));
 					break;
 				case 6:
-					dicePics[x] = new JLabel(new ImageIcon("H:/git/Yahtzee/res//sideSix.png"));
+					dicePics[x] = new JLabel(new ImageIcon("C:/Users/laxmo/OneDrive/Documents/GitHub/Yahtzee/res//sideSix.png"));
 					break;
 			}
 			
@@ -91,22 +91,22 @@ public class YahtzeeDice
 			switch(dice[x])
 			{
 				case 1:
-					dicePics[x] = new JLabel(new ImageIcon("H:/git/Yahtzee/res/sideOne.png"));
+					dicePics[x] = new JLabel(new ImageIcon("C:/Users/laxmo/OneDrive/Documents/GitHub/Yahtzee/res/sideOne.png"));
 					break;
 				case 2:
-					dicePics[x] = new JLabel(new ImageIcon("H:/git/Yahtzee/res/sideTwo.png"));
+					dicePics[x] = new JLabel(new ImageIcon("C:/Users/laxmo/OneDrive/Documents/GitHub/Yahtzee/res/sideTwo.png"));
 					break;
 				case 3:
-					dicePics[x] = new JLabel(new ImageIcon("H:/git/Yahtzee/res/sideThree.png"));
+					dicePics[x] = new JLabel(new ImageIcon("C:/Users/laxmo/OneDrive/Documents/GitHub/Yahtzee/res/sideThree.png"));
 					break;
 				case 4:
-					dicePics[x] = new JLabel(new ImageIcon("H:/git/Yahtzee/res/sideFour.png"));
+					dicePics[x] = new JLabel(new ImageIcon("C:/Users/laxmo/OneDrive/Documents/GitHub/Yahtzee/res/sideFour.png"));
 					break;
 				case 5:
-					dicePics[x] = new JLabel(new ImageIcon("H:/git/Yahtzee/res/sideFive.png"));
+					dicePics[x] = new JLabel(new ImageIcon("C:/Users/laxmo/OneDrive/Documents/GitHub/Yahtzee/res/sideFive.png"));
 					break;
 				case 6:
-					dicePics[x] = new JLabel(new ImageIcon("H:/git/Yahtzee/res/sideSix.png"));
+					dicePics[x] = new JLabel(new ImageIcon("C:/Users/laxmo/OneDrive/Documents/GitHub/Yahtzee/res/sideSix.png"));
 					break;
 			}
 			

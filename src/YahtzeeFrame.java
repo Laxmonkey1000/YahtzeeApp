@@ -1,8 +1,5 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-
-import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
@@ -16,6 +13,7 @@ public class YahtzeeFrame extends YahtzeeContent implements ActionListener
 	public static JFrame f = new JFrame();
 	
 	public static boolean confirm;
+	public static boolean backToggle;
 	
 	/** Used to call constructors and begin menu Seqeuence
 	 * @param args Unused */
@@ -54,8 +52,12 @@ public class YahtzeeFrame extends YahtzeeContent implements ActionListener
 	 * calls dice display method, and adds labels */
 	public static void turnOne()
 	{	
-		YahtzeeDice.rollAllDie();
+		if(backToggle == false)
+		{
+			YahtzeeDice.rollAllDie();
+		}	
 		YahtzeeDice.displayDice();
+		backToggle = false;
 		
 		for(int x = 0; x < diceSelectors.length; x++)
 		{
@@ -192,9 +194,9 @@ public class YahtzeeFrame extends YahtzeeContent implements ActionListener
 		
 		switch(command)
 		{
-		
 			case "0":
 			{
+				System.out.println("0");
 				if(diceSelectors[0].isSelected())
 				{
 					f.remove(tableBackground);
@@ -393,7 +395,8 @@ public class YahtzeeFrame extends YahtzeeContent implements ActionListener
 						YahtzeeData.players.get(YahtzeeData.currentPlayer).fullHouse = score;
 					}
 				}
-			
+				break;
+				
 			case "smallStraight":
 				{
 					int score = YahtzeeData.checkStraight(4);
@@ -469,6 +472,7 @@ public class YahtzeeFrame extends YahtzeeContent implements ActionListener
 			
 			case "backButton":
 				{
+					backToggle = true;
 					f.getContentPane().removeAll();
 					f.repaint();
 					if(YahtzeeData.turnCounter == 1)

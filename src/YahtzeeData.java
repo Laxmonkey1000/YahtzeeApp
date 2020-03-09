@@ -1,3 +1,4 @@
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -8,7 +9,7 @@ import javax.swing.JOptionPane;
 /** Holds values for players array data and checks certain boxes
  * score values using dice array and confirms user actions for scoring
  * @author Holt, Mary */
-public class YahtzeeData 
+public class YahtzeeData //extends YahtzeeContent
 {
 	/** Stores the number of players 1-4 */
 	public static int numOfPlayers;
@@ -48,6 +49,8 @@ public class YahtzeeData
 	yahtzeeScored;
 	
 	public int
+	/** Holds value for a players bonus box value */
+	bonus,
 	/** Holds value for a players threeOfKind box value*/
 	threeOfKind,
 	/** Holds value for a players fourOfKind box value*/
@@ -318,70 +321,106 @@ public class YahtzeeData
 	/** Displays current scores for each box for currentPlayer */
 	public static void displayScores()
 	{
-		//TODO: MAKE DIFFERENT COLORS FOR SCORED VS UNSCORED
-		//TODO: Condense....
+		YahtzeeContent.oneLabel.setText(Integer.toString(
+				players.get(currentPlayer).upperScores[0]));
+		YahtzeeFrame.f.add(YahtzeeContent.oneLabel);
 		
-		JLabel one = new JLabel(Integer.toString(players.get(currentPlayer).upperScores[0]));
-		one.setBounds(285, -5, 50, 50);
-		one.setFont(one.getFont().deriveFont(32.0f));
-		YahtzeeFrame.f.add(one);
-		JLabel two = new JLabel(Integer.toString(players.get(currentPlayer).upperScores[1]));
-		two.setBounds(285,30, 50, 50);
-		two.setFont(two.getFont().deriveFont(32.0f));
-		YahtzeeFrame.f.add(two);
-		JLabel three = new JLabel(Integer.toString(players.get(currentPlayer).upperScores[2]));
-		three.setBounds(285, 65, 50, 50);
-		three.setFont(three.getFont().deriveFont(32.0f));
-		YahtzeeFrame.f.add(three);
-		JLabel four = new JLabel(Integer.toString(players.get(currentPlayer).upperScores[3]));
-		four.setBounds(285, 100, 50, 50);
-		four.setFont(four.getFont().deriveFont(32.0f));
-		YahtzeeFrame.f.add(four);
-		JLabel five = new JLabel(Integer.toString(players.get(currentPlayer).upperScores[4]));
-		five.setBounds(285, 135, 50, 50);
-		five.setFont(five.getFont().deriveFont(32.0f));
-		YahtzeeFrame.f.add(five);
-		JLabel six = new JLabel(Integer.toString(players.get(currentPlayer).upperScores[5]));
-		six.setBounds(285, 170, 50, 50);
-		six.setFont(six.getFont().deriveFont(32.0f));
-		YahtzeeFrame.f.add(six);
-		JLabel totalUp = new JLabel(Integer.toString(players.get(currentPlayer).getUpScore()));
-		totalUp.setBounds(285, 260, 50, 50);
-		totalUp.setFont(totalUp.getFont().deriveFont(32.0f));
-		YahtzeeFrame.f.add(totalUp);
+		YahtzeeContent.twoLabel.setText(Integer.toString(
+				players.get(currentPlayer).upperScores[1]));
+		YahtzeeFrame.f.add(YahtzeeContent.twoLabel);
 		
-		JLabel threeKind = new JLabel(Integer.toString(players.get(currentPlayer).threeOfKind));
-		threeKind.setBounds(285, 340, 50, 50);
-		threeKind.setFont(threeKind.getFont().deriveFont(32.0f));
-		YahtzeeFrame.f.add(threeKind);
-		JLabel fourKind = new JLabel(Integer.toString(players.get(currentPlayer).fourOfKind));
-		fourKind.setBounds(285, 375, 50, 50);
-		fourKind.setFont(fourKind.getFont().deriveFont(32.0f));
-		YahtzeeFrame.f.add(fourKind);
-		JLabel fullHouse = new JLabel(Integer.toString(players.get(currentPlayer).fullHouse));
-		fullHouse.setBounds(285, 410, 50, 50);
-		fullHouse.setFont(fullHouse.getFont().deriveFont(32.0f));
-		YahtzeeFrame.f.add(fullHouse);
-		JLabel smStraight = new JLabel(Integer.toString(players.get(currentPlayer).smallStraight));
-		smStraight.setBounds(285, 445, 50, 50);
-		smStraight.setFont(smStraight.getFont().deriveFont(32.0f));
-		YahtzeeFrame.f.add(smStraight);
-		JLabel lgStraight = new JLabel(Integer.toString(players.get(currentPlayer).largeStraight));
-		lgStraight.setBounds(285, 480, 50, 50);
-		lgStraight.setFont(lgStraight.getFont().deriveFont(32.0f));
-		YahtzeeFrame.f.add(lgStraight);
-		JLabel yahtzee = new JLabel(Integer.toString(players.get(currentPlayer).yahtzee));
-		yahtzee.setBounds(285, 515, 50, 50);
-		yahtzee.setFont(yahtzee.getFont().deriveFont(32.0f));
-		YahtzeeFrame.f.add(yahtzee);
-		JLabel chance = new JLabel(Integer.toString(players.get(currentPlayer).chance));
-		chance.setBounds(285, 550, 50, 50);
-		chance.setFont(chance.getFont().deriveFont(32.0f));
-		YahtzeeFrame.f.add(chance);
-		JLabel totalLow = new JLabel(Integer.toString(players.get(currentPlayer).getLowScore()));
-		totalLow.setBounds(285, 580, 50, 50);
-		totalLow.setFont(totalLow.getFont().deriveFont(32.0f));
-		YahtzeeFrame.f.add(totalLow);
+		YahtzeeContent.threeLabel.setText(Integer.toString(
+				players.get(currentPlayer).upperScores[2]));
+		YahtzeeFrame.f.add(YahtzeeContent.threeLabel);
+		
+		YahtzeeContent.fourLabel.setText(Integer.toString(
+				players.get(currentPlayer).upperScores[3]));
+		YahtzeeFrame.f.add(YahtzeeContent.fourLabel);
+		
+		YahtzeeContent.fiveLabel.setText(Integer.toString(
+				players.get(currentPlayer).upperScores[4]));
+		YahtzeeFrame.f.add(YahtzeeContent.fiveLabel);
+		
+		YahtzeeContent.sixLabel.setText(Integer.toString(
+				players.get(currentPlayer).upperScores[5]));
+		YahtzeeFrame.f.add(YahtzeeContent.sixLabel);
+		
+		YahtzeeContent.oneSixLabel.setText(Integer.toString(
+				players.get(currentPlayer).getOneSixScore()));
+		YahtzeeFrame.f.add(YahtzeeContent.oneSixLabel);
+		
+		YahtzeeContent.bonusLabel.setText(Integer.toString(
+				players.get(currentPlayer).checkBonus()));
+		YahtzeeFrame.f.add(YahtzeeContent.bonusLabel);
+		
+		YahtzeeContent.totalUpLabel.setText(Integer.toString(
+				players.get(currentPlayer).getUpScore()));
+		YahtzeeFrame.f.add(YahtzeeContent.totalUpLabel);
+		//------------------------------------------------------------//
+		YahtzeeContent.threeKindLabel.setText(Integer.toString(
+				players.get(currentPlayer).threeOfKind));
+		YahtzeeFrame.f.add(YahtzeeContent.threeKindLabel);
+		
+		YahtzeeContent.fourKindLabel.setText(Integer.toString(
+				players.get(currentPlayer).fourOfKind));
+		YahtzeeFrame.f.add(YahtzeeContent.fourKindLabel);
+		
+		YahtzeeContent.fullHouseLabel.setText(Integer.toString(
+				players.get(currentPlayer).fullHouse));
+		YahtzeeFrame.f.add(YahtzeeContent.fullHouseLabel);
+		
+		YahtzeeContent.smStraightLabel.setText(Integer.toString(
+				players.get(currentPlayer).smallStraight));
+		YahtzeeFrame.f.add(YahtzeeContent.smStraightLabel);
+		
+		YahtzeeContent.lgStraightLabel.setText(Integer.toString(
+				players.get(currentPlayer).largeStraight));
+		YahtzeeFrame.f.add(YahtzeeContent.lgStraightLabel);
+		
+		YahtzeeContent.yahtzeeLabel.setText(Integer.toString(
+				players.get(currentPlayer).yahtzee));
+		YahtzeeFrame.f.add(YahtzeeContent.yahtzeeLabel);
+		
+		YahtzeeContent.chanceLabel.setText(Integer.toString(
+				players.get(currentPlayer).chance));
+		YahtzeeFrame.f.add(YahtzeeContent.chanceLabel);
+		
+		YahtzeeContent.totalLowLabel.setText(Integer.toString(
+				players.get(currentPlayer).getLowScore()));
+		YahtzeeFrame.f.add(YahtzeeContent.totalLowLabel);
+	}
+	
+	/** Gets upper section value and checks if bonus is reached
+	 * @return bonus 35 if reached, 0 if under 63 */
+	public int checkBonus()
+	{
+		int tempScore = 0;
+		tempScore += upperScores[0];
+		tempScore += upperScores[1];
+		tempScore += upperScores[2];
+		tempScore += upperScores[3];
+		tempScore += upperScores[4];
+		tempScore += upperScores[5];
+		
+		if(tempScore > 63)
+			{ bonus = 35; }
+		else 
+			{ bonus = 0; }
+		return bonus;
+	}
+	
+	/** Gets upper section score of one-six boxes
+	 * @return tempScore Score of one-six boxes values */
+	public int getOneSixScore()
+	{
+		int tempScore = 0;
+		tempScore += upperScores[0];
+		tempScore += upperScores[1];
+		tempScore += upperScores[2];
+		tempScore += upperScores[3];
+		tempScore += upperScores[4];
+		tempScore += upperScores[5];
+		return tempScore;
 	}
 	
 	/** Gets upper section score for certain player
@@ -396,8 +435,7 @@ public class YahtzeeData
 		tempScore += upperScores[4];
 		tempScore += upperScores[5];
 		
-		if(tempScore >= 63) 
-			{ tempScore += 35; } 
+		tempScore += checkBonus();
 		
 		return tempScore;
 	}
@@ -528,13 +566,14 @@ public class YahtzeeData
 		}
 		
 		if(currentPlayer == 0)
-		{ YahtzeeContent.playerLabel.setIcon(new ImageIcon("H:/git/Yahtzee/res/1Label.png")); }
+		{ YahtzeeContent.playerLabel.setIcon(new ImageIcon("C:/Users/laxmo/OneDrive/Documents/GitHub/Yahtzee/res/1Label.png")); }
 		else if(currentPlayer == 1)
-		{ YahtzeeContent.playerLabel.setIcon(new ImageIcon("H:/git/Yahtzee/res/2Label.png")); }
+		{ YahtzeeContent.playerLabel.setIcon(new ImageIcon("C:/Users/laxmo/OneDrive/Documents/GitHub/Yahtzee/res/2Label.png")); }
 		else if(currentPlayer == 2)
-		{ YahtzeeContent.playerLabel.setIcon(new ImageIcon("H:/git/Yahtzee/res/3Label.png")); }
+		{ YahtzeeContent.playerLabel.setIcon(new ImageIcon("C:/Users/laxmo/OneDrive/Documents/GitHub/Yahtzee/res/3Label.png")); }
 		else if(currentPlayer == 3)
-		{ YahtzeeContent.playerLabel.setIcon(new ImageIcon("H:/git/Yahtzee/res/4Label.png")); }
+		{ YahtzeeContent.playerLabel.setIcon(new ImageIcon("C:/Users/laxmo/OneDrive/Documents/GitHub/Yahtzee/res/4Label.png")); }
 		
 	}
+
 }
