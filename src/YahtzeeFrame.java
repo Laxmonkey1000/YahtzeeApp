@@ -12,7 +12,10 @@ public class YahtzeeFrame extends YahtzeeContent implements ActionListener
 	 */
 	public static JFrame f = new JFrame();
 	
+	/** Boolean that constitutes if player has confirmed scoring selection */
 	public static boolean confirm;
+	
+	/** Boolean that constitutes if player wants to go back to rolling die */
 	public static boolean backToggle;
 	
 	/** Used to call constructors and begin menu Seqeuence

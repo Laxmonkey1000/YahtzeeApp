@@ -1,7 +1,5 @@
 import java.awt.event.ActionEvent;
-
 import java.awt.event.ActionListener;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -57,15 +55,25 @@ public class YahtzeeContent implements ActionListener
 	yahtzee = new JButton();
 	
 	static JLabel
+	/** Border for dice[0] + displayed when diceSelectors[0] is selected */
 	die1 = new JLabel(),
+	/** Border for dice[1] + displayed when diceSelectors[1] is selected */
 	die2 = new JLabel(),
+	/** Border for dice[2] + displayed when diceSelectors[2] is selected */
 	die3 = new JLabel(),
+	/** Border for dice[3] + displayed when diceSelectors[3] is selected */
 	die4 = new JLabel(),
+	/** Border for dice[4] + displayed when diceSelectors[4] is selected */
 	die5 = new JLabel(),
+	/** Label that displays "Final Scores" title on finalTurn screen */
 	finalScores = new JLabel(),
+	/** Label that holds value of player 1's final score */
 	p1ScoreLabel = new JLabel(),
+	/** Label that holds value of player 2's final score */
 	p2ScoreLabel = new JLabel(),
+	/** Label that holds value of player 3's final score */
 	p3ScoreLabel = new JLabel(),
+	/** Label that holds value of player 4's final score */
 	p4ScoreLabel = new JLabel(),
 	/** Stores x image for showing turnCounter visually */
 	xIcon1 = new JLabel(),
@@ -88,22 +96,39 @@ public class YahtzeeContent implements ActionListener
 	scoreCard = new JLabel();
 	
 	static JLabel
+	/** Label that holds player's value for one box */
 	oneLabel = new JLabel(),
+	/** Label that holds player's value for two box */
 	twoLabel = new JLabel(),
+	/** Label that holds player's value for three box */
 	threeLabel = new JLabel(),
+	/** Label that holds player's value for four box */
 	fourLabel = new JLabel(),
+	/** Label that holds player's value for five box */
 	fiveLabel = new JLabel(),
+	/** Label that holds player's value for six box */
 	sixLabel = new JLabel(),
+	/** Label that holds player's value for bonus box */
 	bonusLabel = new JLabel(),
+	/** Label that holds player's value for one-six boxes */
 	oneSixLabel = new JLabel(),
+	/** Label that holds player's value for upper section boxes */
 	totalUpLabel = new JLabel(),
+	/** Label that holds player's value for threeKind box */
 	threeKindLabel = new JLabel(),
+	/** Label that holds player's value for fourKind box */
 	fourKindLabel = new JLabel(),
+	/** Label that holds player's value for fullHouse box */
 	fullHouseLabel = new JLabel(),
+	/** Label that holds player's value for smStraight box */
 	smStraightLabel = new JLabel(),
-	lgStraightLabel = new JLabel(),
-	yahtzeeLabel = new JLabel(),
-	chanceLabel = new JLabel(),
+	/** Label that holds player's value for lgStraight box */
+	lgStraightLabel = new JLabel(),	
+	/** Label that holds player's value for yahtzee box */
+	yahtzeeLabel = new JLabel(),	
+	/** Label that holds player's value for chance box */
+	chanceLabel = new JLabel(),	
+	/** Label that holds player's value for total low section */
 	totalLowLabel = new JLabel();
 	
 	/** Constructor which loads all images and sets paramters */

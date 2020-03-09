@@ -1,4 +1,4 @@
- import java.util.Arrays;
+import java.util.Arrays;
 import java.util.Random;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -14,8 +14,10 @@ public class YahtzeeDice
 	
 	/** Holds values for 5 dice */
 	public static int[] dice = new int[5];
+	
 	/** Random Number generator named random */
 	public static Random random = new Random();
+	
 	/** Holds value of number of sides of the dice */
 	public static int sidesNum = 6;
 	

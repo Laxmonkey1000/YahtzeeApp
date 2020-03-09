@@ -1,7 +1,6 @@
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
-
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -23,6 +22,7 @@ public class YahtzeeData //extends YahtzeeContent
 	/** Counter for number of rolls, used to call specific methods */
 	public static byte turnCounter = 0;
 	
+	/** Array List that holds the values for each players scores */
 	public static ArrayList<YahtzeeData> players = new ArrayList<YahtzeeData>();
 	
 	/** True: Scored, False: UnScored
