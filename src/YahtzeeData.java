@@ -22,7 +22,7 @@ public class YahtzeeData //extends YahtzeeContent
 	/** Counter for number of rolls, used to call specific methods */
 	public static byte turnCounter = 0;
 	
-	/** Array List that holds the values for each players scores */
+	/** Array List that holds the values for each player */
 	public static ArrayList<YahtzeeData> players = new ArrayList<YahtzeeData>();
 	
 	/** True: Scored, False: UnScored

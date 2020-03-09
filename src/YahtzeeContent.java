@@ -12,7 +12,7 @@ public class YahtzeeContent implements ActionListener
 	/** JCheckBox array used to determine which die to roll */
 	public static JCheckBox[] diceSelectors = new JCheckBox[5];
 	
-	static JButton
+	public static JButton
 	/** Transfers from score screen to roll */
 	backButton = new JButton(),
 	/** If selected, numOfPlayers is set to 1 */
@@ -54,7 +54,7 @@ public class YahtzeeContent implements ActionListener
 	/** Used to score box  yahtzee */
 	yahtzee = new JButton();
 	
-	static JLabel
+	public static JLabel
 	/** Border for dice[0] + displayed when diceSelectors[0] is selected */
 	die1 = new JLabel(),
 	/** Border for dice[1] + displayed when diceSelectors[1] is selected */
@@ -95,7 +95,7 @@ public class YahtzeeContent implements ActionListener
 	/** Score card layout image for values to appear on */
 	scoreCard = new JLabel();
 	
-	static JLabel
+	public static JLabel
 	/** Label that holds player's value for one box */
 	oneLabel = new JLabel(),
 	/** Label that holds player's value for two box */
