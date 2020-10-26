@@ -1,58 +1,53 @@
 import java.util.Arrays;
 import java.util.Random;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 
+/** Class which deals with the dice array and rolls
+ * depending on differnt paramaters 
+ * @author Holt, Mary */
 public class YahtzeeDice 
 {
-	static JLabel
-	sideOne = new JLabel(),
-	sideTwo = new JLabel(),
-	sideThree = new JLabel(),
-	sideFour = new JLabel(),
-	sideFive = new JLabel(),
-	sideSix = new JLabel();
-	
 	public static JLabel[] dicePics = new JLabel[5];
 	
 	/** Holds values for 5 dice */
-	public static byte[] dice = new byte[5];
+	public static int[] dice = new int[5];
+	
+	/** Random Number generator named random */
 	public static Random random = new Random();
-	public static byte sidesNum = 6;
 	
+	/** Holds value of number of sides of the dice */
+	public static int sidesNum = 6;
 	
-	/** Constructor loads images of 6 dice sides */
+	/** Constructor Unused */
 	YahtzeeDice()
-	{
-		
-	}
+	{ }
 	
+	/** Rolls values for all die and saves the new 
+	 * values w/ setDice() */
 	public static void rollAllDie() 
 	{ 
 		for(int x = 0; x < 5; x++)
 		{
 			int genNum = random.nextInt(sidesNum);
 			genNum += 1;
-			setDice(x, genNum);
+			dice[x] = genNum;
 		}
 		
 	}
 	
+	/** Rolls a single die and saves its new value w/ setDice()
+	 * @param index Used for which die to roll from dice[] */
 	public static void rollSingleDie(int index)
 	{
 		int genNum = random.nextInt(sidesNum);
 		genNum += 1;
-		setDice(index, genNum);
+		dice[index] = genNum;
 	}
 	
-	public static void setDice(int x, int genNum)
-	{
-		dice[x] = (byte) genNum;
-	}
-	
+	/** Displays all dice on the Rolling/Turn screen */
 	public static void displayDice()
 	{
 		for(int x = 0; x < dice.length; x++)
@@ -61,26 +56,26 @@ public class YahtzeeDice
 			switch(dice[x])
 			{
 				case 1:
-					dicePics[x] = new JLabel(new ImageIcon("C:/Users/laxmo/eclipse-workspace/YahtzeeFX/res/sideOne.png"));
+					dicePics[x] = new JLabel(new ImageIcon("C:/Users/laxmo/OneDrive/Documents/GitHub/Yahtzee/res//sideOne.png"));
 					break;
 				case 2:
-					dicePics[x] = new JLabel(new ImageIcon("C:/Users/laxmo/eclipse-workspace/YahtzeeFX/res/sideTwo.png"));
+					dicePics[x] = new JLabel(new ImageIcon("C:/Users/laxmo/OneDrive/Documents/GitHub/Yahtzee/res//sideTwo.png"));
 					break;
 				case 3:
-					dicePics[x] = new JLabel(new ImageIcon("C:/Users/laxmo/eclipse-workspace/YahtzeeFX/res/sideThree.png"));
+					dicePics[x] = new JLabel(new ImageIcon("C:/Users/laxmo/OneDrive/Documents/GitHub/Yahtzee/res//sideThree.png"));
 					break;
 				case 4:
-					dicePics[x] = new JLabel(new ImageIcon("C:/Users/laxmo/eclipse-workspace/YahtzeeFX/res/sideFour.png"));
+					dicePics[x] = new JLabel(new ImageIcon("C:/Users/laxmo/OneDrive/Documents/GitHub/Yahtzee/res//sideFour.png"));
 					break;
 				case 5:
-					dicePics[x] = new JLabel(new ImageIcon("C:/Users/laxmo/eclipse-workspace/YahtzeeFX/res/sideFive.png"));
+					dicePics[x] = new JLabel(new ImageIcon("C:/Users/laxmo/OneDrive/Documents/GitHub/Yahtzee/res//sideFive.png"));
 					break;
 				case 6:
-					dicePics[x] = new JLabel(new ImageIcon("C:/Users/laxmo/eclipse-workspace/YahtzeeFX/res/sideSix.png"));
+					dicePics[x] = new JLabel(new ImageIcon("C:/Users/laxmo/OneDrive/Documents/GitHub/Yahtzee/res//sideSix.png"));
 					break;
 			}
 			
-			dicePics[x].setBounds(140*(x+1), 400, 64, 64);
+			dicePics[x].setBounds(140*(x+1), 375, 64, 64);
 			YahtzeeFrame.f.add(dicePics[x]);
 		}
 		
@@ -90,6 +85,7 @@ public class YahtzeeDice
 		}
 	}
 	
+	/** Displays all the dice on the scoreCard screen */
 	public static void displayScoreDie()
 	{
 		for(int x = 0; x < dice.length; x++)
@@ -97,22 +93,22 @@ public class YahtzeeDice
 			switch(dice[x])
 			{
 				case 1:
-					dicePics[x] = new JLabel(new ImageIcon("C:/Users/laxmo/eclipse-workspace/YahtzeeFX/res/sideOne.png"));
+					dicePics[x] = new JLabel(new ImageIcon("C:/Users/laxmo/OneDrive/Documents/GitHub/Yahtzee/res/sideOne.png"));
 					break;
 				case 2:
-					dicePics[x] = new JLabel(new ImageIcon("C:/Users/laxmo/eclipse-workspace/YahtzeeFX/res/sideTwo.png"));
+					dicePics[x] = new JLabel(new ImageIcon("C:/Users/laxmo/OneDrive/Documents/GitHub/Yahtzee/res/sideTwo.png"));
 					break;
 				case 3:
-					dicePics[x] = new JLabel(new ImageIcon("C:/Users/laxmo/eclipse-workspace/YahtzeeFX/res/sideThree.png"));
+					dicePics[x] = new JLabel(new ImageIcon("C:/Users/laxmo/OneDrive/Documents/GitHub/Yahtzee/res/sideThree.png"));
 					break;
 				case 4:
-					dicePics[x] = new JLabel(new ImageIcon("C:/Users/laxmo/eclipse-workspace/YahtzeeFX/res/sideFour.png"));
+					dicePics[x] = new JLabel(new ImageIcon("C:/Users/laxmo/OneDrive/Documents/GitHub/Yahtzee/res/sideFour.png"));
 					break;
 				case 5:
-					dicePics[x] = new JLabel(new ImageIcon("C:/Users/laxmo/eclipse-workspace/YahtzeeFX/res/sideFive.png"));
+					dicePics[x] = new JLabel(new ImageIcon("C:/Users/laxmo/OneDrive/Documents/GitHub/Yahtzee/res/sideFive.png"));
 					break;
 				case 6:
-					dicePics[x] = new JLabel(new ImageIcon("C:/Users/laxmo/eclipse-workspace/YahtzeeFX/res/sideSix.png"));
+					dicePics[x] = new JLabel(new ImageIcon("C:/Users/laxmo/OneDrive/Documents/GitHub/Yahtzee/res/sideSix.png"));
 					break;
 			}
 			
@@ -122,11 +118,5 @@ public class YahtzeeDice
 		}
 		
 	}
-
-	public static void sortDice()
-	{
-		Arrays.sort(dice);	
-	}
-	
 	
 }
